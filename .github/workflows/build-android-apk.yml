@@ -3,11 +3,12 @@ name: Build Android APK (Debug)
 on:
   workflow_dispatch:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -30,8 +31,8 @@ jobs:
       - name: Generate Android platform folder
         run: flutter create . --platforms=android
 
-        - name: Remove template widget test
-          run: rm -f test/widget_test.dart
+      - name: Remove template widget test
+        run: rm -f test/widget_test.dart
 
       - name: Run tests
         run: flutter test test/pricing_engine_test.dart

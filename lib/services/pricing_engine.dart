@@ -22,10 +22,10 @@ class PricingEngine {
       orElse: () => throw ArgumentError('Container not found'),
     );
 
-    final density = settings.densityKgPerLiter <= 0 ? 1 : settings.densityKgPerLiter;
+    final density = settings.densityKgPerLiter <= 0 ? 1.0 : settings.densityKgPerLiter;
     final approxLiter = input.kg / density;
 
-    final vol = container.volumeLiter <= 0 ? 1 : container.volumeLiter;
+    final vol = container.volumeLiter <= 0 ? 1.0 : container.volumeLiter;
     final containerCount = roundUpToInt(approxLiter / vol);
     final totalContainerCapacityLiter = containerCount * vol;
 
@@ -38,7 +38,7 @@ class PricingEngine {
     final suggestedShippingCost = deliveryMethods
         .firstWhere(
           (d) => d.name == input.deliveryMethod,
-          orElse: () => const DeliveryMethodModel(name: '', suggestedCost: 0),
+          orElse: () => const DeliveryMethodModel(name: '', suggestedCost: 0.0),
         )
         .suggestedCost;
 
